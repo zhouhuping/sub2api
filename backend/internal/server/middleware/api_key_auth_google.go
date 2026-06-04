@@ -54,6 +54,10 @@ func APIKeyAuthWithSubscriptionGoogle(apiKeyService *service.APIKeyService, subs
 			abortWithGoogleError(c, 401, "User account is not active")
 			return
 		}
+		if apiKey.GroupID != nil && (apiKey.Group == nil || !apiKey.Group.IsActive()) {
+			abortWithGoogleError(c, 503, "No available accounts")
+			return
+		}
 
 		// 简易模式：跳过余额和订阅检查
 		if cfg.RunMode == config.RunModeSimple {

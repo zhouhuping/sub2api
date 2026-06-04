@@ -106,12 +106,12 @@
                 :title="t('keys.clickToChangeGroup')"
               >
                 <GroupBadge
-                  v-if="row.group"
-                  :name="row.group.name"
-                  :platform="row.group.platform"
-                  :subscription-type="row.group.subscription_type"
-                  :rate-multiplier="row.group.rate_multiplier"
-                  :user-rate-multiplier="userGroupRates[row.group.id]"
+                  v-if="visibleGroupForKey(row)"
+                  :name="visibleGroupForKey(row)?.name || ''"
+                  :platform="visibleGroupForKey(row)?.platform || 'anthropic'"
+                  :subscription-type="visibleGroupForKey(row)?.subscription_type || 'standard'"
+                  :rate-multiplier="visibleGroupForKey(row)?.rate_multiplier || 1"
+                  :user-rate-multiplier="visibleGroupUserRateForKey(row)"
                 />
                 <span v-else class="text-sm text-gray-400 dark:text-dark-500">{{
                   t('keys.noGroup')
@@ -925,8 +925,8 @@
       :show="showUseKeyModal"
       :api-key="selectedKey?.key || ''"
       :base-url="publicSettings?.api_base_url || ''"
-      :platform="selectedKey?.group?.platform || null"
-      :allow-messages-dispatch="selectedKey?.group?.allow_messages_dispatch || false"
+      :platform="selectedKeyVisibleGroup?.platform || null"
+      :allow-messages-dispatch="selectedKeyVisibleGroup?.allow_messages_dispatch || false"
       @close="closeUseKeyModal"
     />
 
@@ -1014,8 +1014,8 @@
             :class="[
               'flex w-full items-center justify-between rounded-lg px-3 py-2.5 text-sm transition-colors',
               'border-b border-gray-100 last:border-0 dark:border-dark-700',
-              selectedKeyForGroup?.group_id === option.value ||
-              (!selectedKeyForGroup?.group_id && option.value === null)
+              visibleGroupForKey(selectedKeyForGroup)?.id === option.value ||
+              (!visibleGroupForKey(selectedKeyForGroup)?.id && option.value === null)
                 ? 'bg-primary-50 dark:bg-primary-900/20'
                 : 'hover:bg-gray-100 dark:hover:bg-dark-700'
             ]"
@@ -1029,8 +1029,8 @@
               :user-rate-multiplier="option.userRate"
               :description="option.description"
               :selected="
-                selectedKeyForGroup?.group_id === option.value ||
-                (!selectedKeyForGroup?.group_id && option.value === null)
+                visibleGroupForKey(selectedKeyForGroup)?.id === option.value ||
+                (!visibleGroupForKey(selectedKeyForGroup)?.id && option.value === null)
               "
             />
           </button>
@@ -1159,6 +1159,24 @@ const selectedKeyForGroup = computed(() => {
   if (groupSelectorKeyId.value === null) return null
   return apiKeys.value.find((k) => k.id === groupSelectorKeyId.value) || null
 })
+
+const visibleGroupIds = computed(() => new Set(groups.value.map((group) => group.id)))
+
+const isVisibleGroupId = (groupId: number | null | undefined) => {
+  return groupId != null && visibleGroupIds.value.has(groupId)
+}
+
+const visibleGroupForKey = (key: ApiKey | null | undefined): Group | null => {
+  if (!key || !isVisibleGroupId(key.group_id)) return null
+  return groups.value.find((group) => group.id === key.group_id) || key.group || null
+}
+
+const visibleGroupUserRateForKey = (key: ApiKey | null | undefined) => {
+  const group = visibleGroupForKey(key)
+  return group ? userGroupRates.value[group.id] : undefined
+}
+
+const selectedKeyVisibleGroup = computed(() => visibleGroupForKey(selectedKey.value))
 
 const setGroupButtonRef = (keyId: number, el: Element | ComponentPublicInstance | null) => {
   if (el instanceof HTMLElement) {
@@ -1391,9 +1409,10 @@ const editKey = (key: ApiKey) => {
   selectedKey.value = key
   const hasIPRestriction = (key.ip_whitelist?.length > 0) || (key.ip_blacklist?.length > 0)
   const hasExpiration = !!key.expires_at
+  const visibleGroup = visibleGroupForKey(key)
   formData.value = {
     name: key.name,
-    group_id: key.group_id,
+    group_id: visibleGroup?.id ?? null,
     status: key.status === 'quota_exhausted' || key.status === 'expired' ? 'inactive' : key.status,
     use_custom_key: false,
     custom_key: '',
@@ -1691,7 +1710,7 @@ const resetRateLimitUsage = async () => {
 }
 
 const importToCcswitch = (row: ApiKey) => {
-  const platform = row.group?.platform || 'anthropic'
+  const platform = visibleGroupForKey(row)?.platform || 'anthropic'
 
   // For antigravity platform, show client selection dialog
   if (platform === 'antigravity') {
@@ -1706,7 +1725,7 @@ const importToCcswitch = (row: ApiKey) => {
 
 const executeCcsImport = (row: ApiKey, clientType: CcSwitchClientType) => {
   const baseUrl = publicSettings.value?.api_base_url || window.location.origin
-  const platform = row.group?.platform || 'anthropic'
+  const platform = visibleGroupForKey(row)?.platform || 'anthropic'
 
   const usageScript = `({
     request: {

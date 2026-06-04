@@ -109,6 +109,11 @@ func apiKeyAuthWithSubscription(apiKeyService *service.APIKeyService, subscripti
 			return
 		}
 
+		if apiKey.GroupID != nil && (apiKey.Group == nil || !apiKey.Group.IsActive()) {
+			AbortWithError(c, 503, "NO_AVAILABLE_ACCOUNTS", "No available accounts")
+			return
+		}
+
 		// ── 4. SimpleMode → early return ─────────────────────────────
 
 		if cfg.RunMode == config.RunModeSimple {
