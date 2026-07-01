@@ -4408,6 +4408,23 @@
                     </select>
                   </div>
 
+                  <!-- Open Mode -->
+                  <div>
+                    <label
+                      class="mb-1 block text-xs font-medium text-gray-600 dark:text-gray-400"
+                    >
+                      {{ t("admin.settings.customMenu.openMode") }}
+                    </label>
+                    <select v-model="item.open_mode" class="input text-sm">
+                      <option value="embed">
+                        {{ t("admin.settings.customMenu.openModeEmbed") }}
+                      </option>
+                      <option value="blank">
+                        {{ t("admin.settings.customMenu.openModeBlank") }}
+                      </option>
+                    </select>
+                  </div>
+
                   <!-- URL (full width) -->
                   <div class="sm:col-span-2">
                     <label
@@ -6490,6 +6507,7 @@ const form = reactive<SettingsForm>({
     label: string;
     icon_svg: string;
     url: string;
+    open_mode: "embed" | "blank";
     visibility: "user" | "admin";
     sort_order: number;
   }>,
@@ -7093,6 +7111,7 @@ function addMenuItem() {
     label: "",
     icon_svg: "",
     url: "",
+    open_mode: "embed",
     visibility: "user",
     sort_order: form.custom_menu_items.length,
   });

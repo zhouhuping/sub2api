@@ -5614,7 +5614,7 @@ export default {
       },
       customMenu: {
         title: '自定义菜单页面',
-        description: '添加自定义 iframe 页面到侧边栏导航。每个页面可以设置为普通用户或管理员可见。',
+        description: '添加自定义页面到侧边栏导航。每个页面可以设置为普通用户或管理员可见，并选择内嵌或新标签页打开。',
         itemLabel: '菜单项 #{n}',
         name: '菜单名称',
         namePlaceholder: '如：帮助中心',
@@ -5628,6 +5628,9 @@ export default {
         visibility: '可见角色',
         visibilityUser: '普通用户',
         visibilityAdmin: '管理员',
+        openMode: '打开方式',
+        openModeEmbed: '内嵌打开',
+        openModeBlank: '新标签页打开',
         add: '添加菜单项',
         remove: '删除',
         moveUp: '上移',

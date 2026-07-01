@@ -1134,6 +1134,13 @@ func (h *SettingHandler) UpdateSettings(c *gin.Context) {
 				response.BadRequest(c, "Custom menu item visibility must be 'user' or 'admin'")
 				return
 			}
+			openMode := strings.TrimSpace(item.OpenMode)
+			if openMode == "" {
+				items[i].OpenMode = "embed"
+			} else if openMode != "embed" && openMode != "blank" {
+				response.BadRequest(c, "Custom menu item open_mode must be 'embed' or 'blank'")
+				return
+			}
 			if len(item.IconSVG) > maxMenuItemIconSVGLen {
 				response.BadRequest(c, "Custom menu item icon SVG is too large (max 10KB)")
 				return
