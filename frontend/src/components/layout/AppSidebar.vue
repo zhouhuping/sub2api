@@ -190,7 +190,6 @@ import { useAdminSettingsStore, useAppStore, useAuthStore, useOnboardingStore } 
 import VersionBadge from '@/components/common/VersionBadge.vue'
 import { sanitizeSvg } from '@/utils/sanitize'
 import { FeatureFlags, makeSidebarFlag } from '@/utils/featureFlags'
-import { buildEmbeddedUrl, detectTheme } from '@/utils/embedded-url'
 import type { CustomMenuItem } from '@/types'
 
 interface NavItem {
@@ -241,20 +240,11 @@ function buildCustomMenuNavItem(item: CustomMenuItem): NavItem {
     label: item.label,
     icon: null,
     iconSvg: item.icon_svg,
-    externalHref:
-      openMode === 'blank'
-        ? buildEmbeddedUrl(
-            item.url,
-            authStore.user?.id,
-            authStore.token,
-            pageTheme.value,
-            locale.value,
-          )
-        : undefined,
+    externalHref: openMode === 'blank' ? item.url : undefined,
   }
 }
 
-const { t, locale } = useI18n()
+const { t } = useI18n()
 
 const route = useRoute()
 const router = useRouter()
@@ -267,7 +257,6 @@ const sidebarCollapsed = computed(() => appStore.sidebarCollapsed)
 const mobileOpen = computed(() => appStore.mobileOpen)
 const isAdmin = computed(() => authStore.isAdmin)
 const isDark = ref(document.documentElement.classList.contains('dark'))
-const pageTheme = computed(() => detectTheme())
 
 // Track which parent nav groups are expanded
 const expandedGroups = ref<Set<string>>(new Set())
