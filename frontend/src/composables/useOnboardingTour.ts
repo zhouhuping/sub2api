@@ -536,12 +536,6 @@ export function useOnboardingTour(options: OnboardingOptions) {
       return
     }
 
-    // 只在管理员+标准模式下自动启动
-    const isAdmin = userStore.user?.role === 'admin'
-    if (!isAdmin) {
-      return
-    }
-
     if (!options.autoStart || hasSeen()) return
     autoStartTimer = setTimeout(() => {
       void startTour()
