@@ -6380,6 +6380,18 @@ export default {
         nextBtn: 'Start 🚀',
         prevBtn: 'Skip'
       },
+      redeemMenu: {
+        title: '🎁 Redeem Entry',
+        description: '<div style="line-height: 1.7;"><p style="margin-bottom: 12px;">If you received a redeem code from the administrator, you can use it here first to claim balance, concurrency, or trial access.</p><p style="padding: 8px 12px; background: #fef3c7; border-left: 3px solid #f59e0b; border-radius: 4px; font-size: 13px;"><b>💡 Typical use cases:</b><br/>Trial credits, campaign benefits, and temporary access are often distributed through redeem codes.</p><p style="margin-top: 12px; color: #10b981; font-weight: 600;">👉 Click to open the redeem page</p></div>'
+      },
+      redeemInput: {
+        title: '⌨️ Enter Redeem Code',
+        description: '<div style="line-height: 1.7;"><p style="margin-bottom: 12px;">Enter the redeem code you received here.</p><p style="padding: 8px 12px; background: #eff6ff; border-left: 3px solid #3b82f6; border-radius: 4px; font-size: 13px;"><b>📌 Tip:</b><br/>Redeem codes are usually case-sensitive, and you should avoid extra spaces when copying and pasting.</p></div>'
+      },
+      redeemSubmit: {
+        title: '✅ Confirm Redeem',
+        description: '<div style="line-height: 1.7;"><p style="margin-bottom: 12px;">After entering the code, click here to submit the redemption.</p><p style="padding: 8px 12px; background: #f0fdf4; border-left: 3px solid #10b981; border-radius: 4px; font-size: 13px;"><b>🎯 You may receive:</b><br/>Balance, concurrency, or a trial/subscription entitlement for a specific group.</p></div>'
+      },
       keyManage: {
         title: '🔑 API Key Management',
         description: '<div style="line-height: 1.7;"><p style="margin-bottom: 12px;">Manage all your API access keys here.</p><p style="padding: 8px 12px; background: #eff6ff; border-left: 3px solid #3b82f6; border-radius: 4px; font-size: 13px;"><b>📌 What is an API Key?</b><br/>An API key is your credential for accessing AI services, like a key that allows your application to call AI capabilities.</p><p style="margin-top: 12px; color: #10b981; font-weight: 600;">👉 Click to enter key page</p></div>'

@@ -36,6 +36,7 @@
                   v-model="redeemCode"
                   type="text"
                   required
+                  data-tour="redeem-code-input"
                   :placeholder="t('redeem.redeemCodePlaceholder')"
                   :disabled="submitting"
                   class="input py-3 pl-12 text-lg"
@@ -49,6 +50,7 @@
             <button
               type="submit"
               :disabled="!redeemCode || submitting"
+              data-tour="redeem-submit-btn"
               class="btn btn-primary w-full py-3"
             >
               <svg

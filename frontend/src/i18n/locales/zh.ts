@@ -6560,6 +6560,21 @@ export default {
         nextBtn: '开始 🚀',
         prevBtn: '跳过'
       },
+      redeemMenu: {
+        title: '🎁 兑换入口',
+        description:
+          '<div style="line-height: 1.7;"><p style="margin-bottom: 12px;">如果您拿到了管理员发放的兑换码，可以先在这里兑换余额、并发数或试用权限。</p><p style="padding: 8px 12px; background: #fef3c7; border-left: 3px solid #f59e0b; border-radius: 4px; font-size: 13px;"><b>💡 适合什么场景？</b><br/>体验额度、活动福利、试用资格，通常都会通过兑换码发放。</p><p style="margin-top: 12px; color: #10b981; font-weight: 600;">👉 点击进入兑换页面</p></div>'
+      },
+      redeemInput: {
+        title: '⌨️ 输入兑换码',
+        description:
+          '<div style="line-height: 1.7;"><p style="margin-bottom: 12px;">在这里输入您拿到的兑换码。</p><p style="padding: 8px 12px; background: #eff6ff; border-left: 3px solid #3b82f6; border-radius: 4px; font-size: 13px;"><b>📌 提示：</b><br/>兑换码通常区分大小写，复制粘贴时请注意不要带多余空格。</p></div>'
+      },
+      redeemSubmit: {
+        title: '✅ 确认兑换',
+        description:
+          '<div style="line-height: 1.7;"><p style="margin-bottom: 12px;">输入完成后，点击这里提交兑换。</p><p style="padding: 8px 12px; background: #f0fdf4; border-left: 3px solid #10b981; border-radius: 4px; font-size: 13px;"><b>🎯 兑换后可能获得：</b><br/>余额、并发数，或者某个分组的试用/订阅资格。</p></div>'
+      },
       keyManage: {
         title: '🔑 API 密钥管理',
         description:

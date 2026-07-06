@@ -257,6 +257,36 @@ export const getUserSteps = (t: (key: string) => string): DriveStep[] => [
     }
   },
   {
+    element: '[data-tour="sidebar-redeem"]',
+    popover: {
+      title: t('onboarding.user.redeemMenu.title'),
+      description: t('onboarding.user.redeemMenu.description'),
+      side: 'right',
+      align: 'center',
+      showButtons: ['close']
+    }
+  },
+  {
+    element: '[data-tour="redeem-code-input"]',
+    popover: {
+      title: t('onboarding.user.redeemInput.title'),
+      description: t('onboarding.user.redeemInput.description'),
+      side: 'bottom',
+      align: 'start',
+      showButtons: ['next', 'previous']
+    }
+  },
+  {
+    element: '[data-tour="redeem-submit-btn"]',
+    popover: {
+      title: t('onboarding.user.redeemSubmit.title'),
+      description: t('onboarding.user.redeemSubmit.description'),
+      side: 'bottom',
+      align: 'center',
+      showButtons: ['next', 'previous']
+    }
+  },
+  {
     element: '[data-tour="sidebar-my-keys"]',
     popover: {
       title: t('onboarding.user.keyManage.title'),
