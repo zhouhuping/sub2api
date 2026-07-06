@@ -6375,14 +6375,14 @@ export default {
     // User tour steps
     user: {
       welcome: {
-        title: '👋 Welcome to Sub2API',
-        description: '<div style="line-height: 1.8;"><p style="margin-bottom: 16px;">Hello! Welcome to the Sub2API AI service platform.</p><p style="margin-bottom: 12px;"><b>🎯 Quick Start:</b></p><ul style="margin-left: 20px; margin-bottom: 16px;"><li>🔑 Create API Key</li><li>📋 Copy key to your application</li><li>🚀 Start using AI services</li></ul><p style="color: #10b981; font-weight: 600;">Just 1 minute, let\'s get started →</p></div>',
+        title: '👋 Welcome to Norvo',
+        description: '<div style="line-height: 1.8;"><p style="margin-bottom: 16px;">Hello! Welcome to the Norvo AI service platform.</p><p style="margin-bottom: 12px;"><b>🎯 Quick Start:</b></p><ul style="margin-left: 20px; margin-bottom: 16px;"><li>🎁 Redeem access benefits</li><li>🔑 Create API Key</li><li>📋 Copy key to your application</li><li>🚀 Start using AI services</li></ul><p style="color: #10b981; font-weight: 600;">Just 1 minute, let\'s get started →</p></div>',
         nextBtn: 'Start 🚀',
         prevBtn: 'Skip'
       },
       redeemMenu: {
         title: '🎁 Redeem Entry',
-        description: '<div style="line-height: 1.7;"><p style="margin-bottom: 12px;">If you received a redeem code from the administrator, you can use it here first to claim balance, concurrency, or trial access.</p><p style="padding: 8px 12px; background: #fef3c7; border-left: 3px solid #f59e0b; border-radius: 4px; font-size: 13px;"><b>💡 Typical use cases:</b><br/>Trial credits, campaign benefits, and temporary access are often distributed through redeem codes.</p><p style="margin-top: 12px; color: #10b981; font-weight: 600;">👉 Click to open the redeem page</p></div>'
+        description: '<div style="line-height: 1.7;"><p style="margin-bottom: 12px;">If you received a redeem code from the administrator, you can use it here to redeem balance, concurrency, group subscriptions, or other trial access.</p><p style="padding: 8px 12px; background: #fef3c7; border-left: 3px solid #f59e0b; border-radius: 4px; font-size: 13px;"><b>💡 Typical use cases:</b><br/>Trial credits, campaign benefits, and temporary access are often distributed through redeem codes.</p><p style="margin-top: 12px; color: #10b981; font-weight: 600;">👉 Click to open the redeem page</p></div>'
       },
       redeemInput: {
         title: '⌨️ Enter Redeem Code',
@@ -6412,7 +6412,7 @@ export default {
       },
       keySubmit: {
         title: '🎉 Complete Creation',
-        description: '<div style="line-height: 1.7;"><p style="margin-bottom: 12px;">Click to confirm and create your API key.</p><div style="padding: 8px 12px; background: #fee2e2; border-left: 3px solid #ef4444; border-radius: 4px; font-size: 13px; margin-bottom: 12px;"><b>⚠️ Important:</b><ul style="margin: 8px 0 0 16px;"><li>Copy the key (sk-xxx) immediately after creation</li><li>Key is only shown once, need to regenerate if lost</li></ul></div><p style="padding: 8px 12px; background: #f0fdf4; border-left: 3px solid #10b981; border-radius: 4px; font-size: 13px;"><b>🚀 How to Use:</b><br/>Configure the key in any OpenAI-compatible client (like ChatBox, OpenCat, etc.) and start using!</p><p style="margin-top: 12px; color: #10b981; font-weight: 600;">👉 Click "Create" button</p></div>'
+        description: '<div style="line-height: 1.7;"><p style="margin-bottom: 12px;">Click to confirm and create your API key.</p><div style="padding: 8px 12px; background: #fee2e2; border-left: 3px solid #ef4444; border-radius: 4px; font-size: 13px; margin-bottom: 12px;"><b>⚠️ Important:</b><ul style="margin: 8px 0 0 16px;"><li>Copy the key (sk-xxx) immediately after creation</li><li>Key is only shown once, need to regenerate if lost</li></ul></div><p style="padding: 8px 12px; background: #f0fdf4; border-left: 3px solid #10b981; border-radius: 4px; font-size: 13px;"><b>🚀 How to Use:</b><br/>Configure the key in any Anthropic/OpenAI-compatible client (like Claude Code、Codex、CherryStudio, etc.) and start using!</p><p style="margin-top: 12px; color: #10b981; font-weight: 600;">👉 Click "Create" button</p></div>'
       }
     }
   },
