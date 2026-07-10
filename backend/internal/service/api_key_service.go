@@ -24,6 +24,7 @@ import (
 var (
 	ErrAPIKeyNotFound     = infraerrors.NotFound("API_KEY_NOT_FOUND", "api key not found")
 	ErrGroupNotAllowed    = infraerrors.Forbidden("GROUP_NOT_ALLOWED", "user is not allowed to bind this group")
+	ErrGroupNotActive     = infraerrors.BadRequest("GROUP_NOT_ACTIVE", "target group is not active")
 	ErrAPIKeyExists       = infraerrors.Conflict("API_KEY_EXISTS", "api key already exists")
 	ErrAPIKeyTooShort     = infraerrors.BadRequest("API_KEY_TOO_SHORT", "api key must be at least 16 characters")
 	ErrAPIKeyInvalidChars = infraerrors.BadRequest("API_KEY_INVALID_CHARS", "api key can only contain letters, numbers, underscores, and hyphens")
@@ -367,6 +368,9 @@ func (s *APIKeyService) Create(ctx context.Context, userID int64, req CreateAPIK
 		if err != nil {
 			return nil, fmt.Errorf("get group: %w", err)
 		}
+		if !group.IsActive() {
+			return nil, ErrGroupNotActive
+		}
 
 		// 检查用户是否可以绑定该分组
 		if !s.canUserBindGroup(ctx, user, group) {
@@ -672,6 +676,9 @@ func (s *APIKeyService) Update(ctx context.Context, id int64, userID int64, req 
 		group, err := s.groupRepo.GetByID(ctx, *req.GroupID)
 		if err != nil {
 			return nil, fmt.Errorf("get group: %w", err)
+		}
+		if !group.IsActive() {
+			return nil, ErrGroupNotActive
 		}
 
 		if !s.canUserBindGroup(ctx, user, group) {

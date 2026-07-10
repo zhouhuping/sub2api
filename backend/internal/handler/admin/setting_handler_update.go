@@ -975,6 +975,19 @@ func (h *SettingHandler) UpdateSettings(c *gin.Context) {
 					return
 				}
 			}
+			openMode := strings.TrimSpace(item.OpenMode)
+			if openMode == "" {
+				openMode = "embed"
+			}
+			if openMode != "embed" && openMode != "blank" {
+				response.BadRequest(c, "Custom menu item open_mode must be 'embed' or 'blank'")
+				return
+			}
+			if strings.HasPrefix(urlTrimmed, "md:") && openMode == "blank" {
+				response.BadRequest(c, "Markdown custom menu items must use embed open_mode")
+				return
+			}
+			items[i].OpenMode = openMode
 			if item.Visibility != "user" && item.Visibility != "admin" {
 				response.BadRequest(c, "Custom menu item visibility must be 'user' or 'admin'")
 				return
