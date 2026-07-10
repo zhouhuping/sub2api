@@ -83,11 +83,6 @@ func APIKeyAuthWithSubscriptionGoogle(apiKeyService *service.APIKeyService, subs
 			return
 		}
 
-		if apiKey.GroupID != nil && (apiKey.Group == nil || !apiKey.Group.IsActive()) {
-			abortWithGoogleError(c, 503, "No available accounts")
-			return
-		}
-
 		if _, message, ok := validateAPIKeyGroupAvailable(apiKey); !ok {
 			service.MarkOpsClientBusinessLimited(c, service.OpsClientBusinessLimitedReasonAPIKeyGroupUnavailable)
 			abortWithGoogleError(c, 403, message)
